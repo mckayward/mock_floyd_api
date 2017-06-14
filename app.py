@@ -14,6 +14,12 @@ def random_id(n=22):
     return ''.join(random.SystemRandom().choice(string.ascii_letters +
         string.digits) for _ in range(n))
 
+@app.route('/api/v1/completed_upload/', methods=['POST'])
+def completed_upload():
+    id = json.loads(request.data)["ID"]
+    print("Start untarring for {}".format(id))
+    return ""
+
 @app.route('/api/v1/modules/', methods=['POST'])
 def modules():
     # Just return an ID
