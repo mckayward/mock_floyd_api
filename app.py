@@ -20,6 +20,18 @@ def completed_upload():
     print("Start untarring for {}".format(id))
     return ""
 
+@app.route('/api/v1/cli_version/')
+def cli_version():
+    return json.jsonify({"min_version": "0.9.2", "latest_version": "0.9.2"})
+
+@app.route('/api/v1/upload_succeeded/', methods=['POST'])
+def success():
+    return "success"
+
+@app.route('/api/v1/upload_failed/', methods=['POST'])
+def failure():
+    return "failure recorded"
+
 @app.route('/api/v1/modules/', methods=['POST'])
 def modules():
     # Just return an ID
@@ -37,4 +49,4 @@ def data_creds():
     return json.jsonify({"id": id, "token": token})
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=8080)
